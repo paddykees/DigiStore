@@ -6,6 +6,7 @@ class GroceryItems:
 class DigiMartGUI:
     def __init__(self, parent):
         pass
+        print("hello world")
 
 if __name__ == "__main__":
     root = Tk()
