@@ -1,7 +1,9 @@
 from tkinter import *
 
 class GroceryItems:
-    pass
+    def __init__(self, name, quantity):
+        self.name = name
+        self.quantity = quantity
 
 class DigiMartGUI:
     def __init__(self, parent):
