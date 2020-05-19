@@ -13,7 +13,7 @@ class DigiMartGUI:
         quantity = StringVar()
 
         label_digi_mart = Label(parent, text = "Welcome to DigiMart")
-        label_food = Label(parent, text = "how many" + self.grocery_list[0].name + "would you like?")
+        label_food = Label(parent, text = "how many " + self.grocery_list[0].name + " would you like?")
         entry = Entry(parent, text = "How much would you like")
 
         label_digi_mart.grid(row = 0, columnspan = 3)
