@@ -27,7 +27,7 @@ class DigiMartGUI:
     def confirm_quantity(self):
         self.quantity = int(self.entry.get())
         self.label_test.configure(text = int(self.entry.get()))
-
+        self.entry.delete(0, 'end')
 
 
 if __name__ == "__main__":
