@@ -20,12 +20,23 @@ class DigiMartGUI:
         for i in  range(len(self.grocery_list)):
             item_list.append(self.grocery_list[i].name)
 
-        fruit = StringVar()
+        self.fruit = StringVar()
 
-        menu_fruit = OptionMenu(parent, fruit, *item_list)
+        menu_fruit = OptionMenu(parent, self.fruit, *item_list, command = self.label_update)
         menu_fruit.pack()
 
-        fruit.set("please select an option")
+        self.fruit.set("please select an option")
+
+        self.label = Label(parent, text = "fruit")
+        self.label.pack()
+    
+    def label_update(self, name):
+        self.label.configure(text = self.fruit.get())
+
+
+
+
+
 
 if __name__ == "__main__":
     root = Tk()
