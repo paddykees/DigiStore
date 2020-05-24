@@ -42,12 +42,12 @@ class DigiMartGUI:
         menu_fruit = OptionMenu(parent, self.fruit, *item_list, command = self.update_label_food)
 
         #Configures the position of the labels in the program
-        label_digi_mart.grid(row = 0, columnspan = 3)
+        label_digi_mart.grid(row = 0, columnspan = 4)
         self.label_food.grid(row = 1, column = 2)
         self.label_test.grid(row = 3, column = 3)
 
         #Configures the position of the buttons, dropdown menus and entry widgets in the program
-        button_confirm_quantity.grid(row = 1, column = 3)
+        button_confirm_quantity.grid(row = 1, column = 4)
         self.entry.grid(row = 1, column = 3)
         menu_fruit.grid(row = 1, column = 1)
 
