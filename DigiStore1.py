@@ -31,8 +31,6 @@ class DigiMartGUI:
         label_digi_mart = Label(parent, text = "Welcome to DigiMart")
         self.label_food = Label(parent, text = "please pick an option from the dropdown menu")
         self.label_test = Label(parent, text = "text")
-        self.label_dropdown = Label(parent, text = "dropdown text")
-
 
         #Allows the USER to interact with the program by being able o input intergers and pressing a button to confirm. 
         #A label on line 18 is configured to change and display the result entered into the entry widget
@@ -41,13 +39,12 @@ class DigiMartGUI:
 
         self.fruit = StringVar()
 
-        menu_fruit = OptionMenu(parent, self.fruit, *item_list, command = self.update_label_dropdown)
+        menu_fruit = OptionMenu(parent, self.fruit, *item_list, command = self.update_label_food)
 
         #Configures the position of the labels in the program
         label_digi_mart.grid(row = 0, columnspan = 3)
         self.label_food.grid(row = 1, column = 0)
         self.label_test.grid(row = 3, column = 3)
-        self.label_dropdown.grid(row = 3, column = 2)
 
         #Configures the position of the buttons, dropdown menus and entry widgets in the program
         button_confirm_quantity.grid(row = 1, column = 3)
@@ -71,8 +68,7 @@ class DigiMartGUI:
         except:
             self.label_test.configure(text = "please enter a valid interger")
     
-    def update_label_dropdown(self, name):
-        self.label_dropdown.configure(text = self.fruit.get())
+    def update_label_food(self, name):
         self.label_food.configure(text = "how many " + self.fruit.get() + "s would you like?")
 
 
