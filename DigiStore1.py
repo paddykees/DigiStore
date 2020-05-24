@@ -15,7 +15,10 @@ class DigiMartGUI:
 
         #adds food objects to the grocery list
         self.grocery_list.append(GroceryItems("apple", 0))
-
+        self.grocery_list.append(GroceryItems("orange", 0))
+        self.grocery_list.append(GroceryItems("mango", 0))
+        self.grocery_list.append(GroceryItems("pear", 0))
+        self.grocery_list.append(GroceryItems("berry", 0))
         #labels that display on the GUI, helps the USER understand what is going on
         label_digi_mart = Label(parent, text = "Welcome to DigiMart")
         label_food = Label(parent, text = "how many " + self.grocery_list[0].name + "s would you like?")
@@ -34,6 +37,8 @@ class DigiMartGUI:
         #Configures the position of the buttons and entry widgets in the program
         button_confirm_quantity.grid(row = 1, column = 3)
         self.entry.grid(row = 1, column = 2)
+
+
 
     #method that defines what the button does when pressed
     def confirm_quantity(self):
