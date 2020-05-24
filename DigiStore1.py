@@ -29,7 +29,7 @@ class DigiMartGUI:
 
         #labels that display on the GUI, helps the USER understand what is going on
         label_digi_mart = Label(parent, text = "Welcome to DigiMart")
-        label_food = Label(parent, text = "how many " + self.grocery_list[0].name + "s would you like?")
+        self.label_food = Label(parent, text = "please pick an option from the dropdown menu")
         self.label_test = Label(parent, text = "text")
         self.label_dropdown = Label(parent, text = "dropdown text")
 
@@ -45,7 +45,7 @@ class DigiMartGUI:
 
         #Configures the position of the labels in the program
         label_digi_mart.grid(row = 0, columnspan = 3)
-        label_food.grid(row = 1, column = 0)
+        self.label_food.grid(row = 1, column = 0)
         self.label_test.grid(row = 3, column = 3)
         self.label_dropdown.grid(row = 3, column = 2)
 
@@ -73,6 +73,8 @@ class DigiMartGUI:
     
     def update_label_dropdown(self, name):
         self.label_dropdown.configure(text = self.fruit.get())
+        self.label_food.configure(text = "how many " + self.fruit.get() + "s would you like?")
+
 
 #creates GUI window
 if __name__ == "__main__":
