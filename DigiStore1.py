@@ -27,6 +27,7 @@ class DigiMartGUI:
         for i in  range(len(self.grocery_list)):
             item_list.append(self.grocery_list[i].name)
 
+        self.shopping_list = []
         #labels that display on the GUI, helps the USER understand what is going on
         label_digi_mart = Label(parent, text = "Welcome to DigiMart")
         self.label_food = Label(parent, text = "please pick an option from the dropdown menu")
@@ -62,6 +63,8 @@ class DigiMartGUI:
 
             #configures the test label to allow USER check that entry widget/button works as intended, not intended to be a part of final release
             self.label_test.configure(text = int(self.entry.get()))
+
+            self.shopping_list.append(GroceryItems(self.fruit.get(), self.entry.get()))
 
             #clears entry widget after data has been stored
             self.entry.delete(0, 'end')
