@@ -66,6 +66,7 @@ class DigiMartGUI:
 
             self.shopping_list.append(GroceryItems(self.fruit.get(), self.entry.get()))
 
+            print(self.shopping_list[0].name + self.shopping_list[0].quantity)
             #clears entry widget after data has been stored
             self.entry.delete(0, 'end')
         except:
