@@ -1,5 +1,5 @@
 list = []
-if list[0] == 17:
-    print("WTF")
+if list[0] != 17:
+    print("epic")
 else:
-    print("excellent")
+    print("not epic")

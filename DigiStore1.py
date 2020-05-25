@@ -58,7 +58,16 @@ class DigiMartGUI:
     #method that defines what the button does when pressed
     def confirm_quantity(self):
         try:
+            item_checker = 0
+            #ensures that they have chosen an option
             if self.fruit.get() != "please select an option":
+                while item_checker != len(self.item_list):
+                    for i in  range(len(self.item_list)):
+                        if entry.get() == self.item_list[i].name:
+                            print("this is a double up")
+                        else:
+                            item_checker == i
+                    
                 #defines quantity as the interger typed into the the entry widget when the button is pressed
                 self.quantity = int(self.entry.get())
 
