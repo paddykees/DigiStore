@@ -35,9 +35,8 @@ class DigiMartGUI:
 
         #Allows the USER to interact with the program by being able o input intergers and pressing a button to confirm. 
         #A label on line 18 is configured to change and display the result entered into the entry widget
-        button_confirm_quantity = Button(parent, text = "confirm", command = self.confirm_quantity)
-        self.entry = Entry(parent, text = "How much would you like")
-
+        self.button_confirm_quantity = Button(parent, text = "confirm", command = self.confirm_quantity, state = DISABLED)
+        self.entry = Entry(parent, text = "How much would you like", state = DISABLED)
         self.fruit = StringVar()
 
         menu_fruit = OptionMenu(parent, self.fruit, *item_list, command = self.update_label_food)
@@ -48,7 +47,7 @@ class DigiMartGUI:
         self.label_test.grid(row = 3, column = 3)
 
         #Configures the position of the buttons, dropdown menus and entry widgets in the program
-        button_confirm_quantity.grid(row = 1, column = 4)
+        self.button_confirm_quantity.grid(row = 1, column = 4)
         self.entry.grid(row = 1, column = 3)
         menu_fruit.grid(row = 1, column = 1)
 
@@ -78,6 +77,8 @@ class DigiMartGUI:
     
     def update_label_food(self, name):
         self.label_food.configure(text = "how many " + self.fruit.get() + "s would you like?")
+        self.entry.configure(state = NORMAL)
+        self.button_confirm_quantity.configure(state = NORMAL)
 
 
 #creates GUI window
