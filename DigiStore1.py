@@ -58,17 +58,20 @@ class DigiMartGUI:
     #method that defines what the button does when pressed
     def confirm_quantity(self):
         try:
-            #defines quantity as the interger typed into the the entry widget when the button is pressed
-            self.quantity = int(self.entry.get())
+            if self.fruit.get() != "please select an option":
+                #defines quantity as the interger typed into the the entry widget when the button is pressed
+                self.quantity = int(self.entry.get())
 
-            #configures the test label to allow USER check that entry widget/button and dropwown menu work as intended, not intended to be a part of final release
-            #also lets user know the program is working
-            self.shopping_list.append(GroceryItems(self.fruit.get(), self.entry.get()))
-            self.label_test.configure(text = "You have added " + self.entry.get() + " " + self.shopping_list[0].name + "s to your shopping cart")
+                #configures the test label to allow USER check that entry widget/button and dropwown menu work as intended, not intended to be a part of final release
+                #also lets user know the program is working
+                self.shopping_list.append(GroceryItems(self.fruit.get(), self.entry.get()))
+                self.label_test.configure(text = "You have added " + self.entry.get() + " " + self.shopping_list[0].name + "s to your shopping cart")
 
-            #print(self.shopping_list[0].name + self.shopping_list[0].quantity)
-            #clears entry widget after data has been stored
-            self.entry.delete(0, 'end')
+                #print(self.shopping_list[0].name + self.shopping_list[0].quantity)
+                #clears entry widget after data has been stored
+                self.entry.delete(0, 'end')
+            else:
+                self.label_test.configure(text = "please select an option from the drop down menu to the left")
         except:
             self.label_test.configure(text = "please enter a valid interger")
     
