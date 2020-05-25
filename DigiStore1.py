@@ -13,6 +13,9 @@ class DigiMartGUI:
         #creates the grocery list, houses all the diffrent food objects
         self.grocery_list = []
 
+        self.fruit = StringVar()
+        self.seller = IntVar()
+
         #adds food objects to the grocery list
         self.grocery_list.append(GroceryItems("apple", 0))
         self.grocery_list.append(GroceryItems("orange", 0))
@@ -37,19 +40,20 @@ class DigiMartGUI:
         #A label on line 18 is configured to change and display the result entered into the entry widget
         self.button_confirm_quantity = Button(parent, text = "confirm", command = self.confirm_quantity, state = DISABLED)
         self.entry = Entry(parent, text = "How much would you like", state = DISABLED)
-        self.fruit = StringVar()
+        self.check_box_seller = Checkbutton(parent, text = "seller", variable = self.seller)
 
         menu_fruit = OptionMenu(parent, self.fruit, *item_list, command = self.update_label_food)
 
         #Configures the position of the labels in the program
         label_digi_mart.grid(row = 0, columnspan = 4)
-        self.label_food.grid(row = 1, column = 2)
-        self.label_test.grid(row = 3, column = 3)
+        self.label_food.grid(row = 1, column = 1)
+        self.label_test.grid(row = 3, column = 2)
 
         #Configures the position of the buttons, dropdown menus and entry widgets in the program
-        self.button_confirm_quantity.grid(row = 1, column = 4)
-        self.entry.grid(row = 1, column = 3)
-        menu_fruit.grid(row = 1, column = 1)
+        self.button_confirm_quantity.grid(row = 1, column = 3)
+        self.entry.grid(row = 1, column = 2)
+        menu_fruit.grid(row = 1, column = 0)
+        self.check_box_seller.grid(row = 3, column =0)
 
         #sets the defualt dropdown text when the program first loads
         self.fruit.set("please select an option")
