@@ -43,13 +43,11 @@ class DigiMartGUI:
         #A label on line 18 is configured to change and display the result entered into the entry widget
         self.button_confirm_quantity = Button(parent, text = "confirm", command = self.confirm_quantity, state = DISABLED)
         self.button_confirm_order = Button(parent, text = "confirm order", command = self.confirm_order, state = DISABLED)
-        self.display_list = Button(parent, text = "Display shopping list", command = self.confirm_order)
-
 
         self.entry = Entry(parent, text = "How much would you like", state = DISABLED)
         self.check_box_seller = Checkbutton(parent, text = "seller", variable = self.seller)
 
-        menu_fruit = OptionMenu(parent, self.fruit, *self.item_list, command = self.update_label_food)
+        self.menu_fruit = OptionMenu(parent, self.fruit, *self.item_list, command = self.update_label_food)
 
         #Configures the position of the labels in the program, these text widgets used to relay what the program purpose is and what they need to do
         label_digi_mart.grid(row = 0, columnspan = 4)
@@ -60,11 +58,10 @@ class DigiMartGUI:
         self.button_confirm_quantity.grid(row = 1, column = 3)
         self.check_box_seller.grid(row = 3, column = 0)
         self.button_confirm_order.grid(row = 3, column = 1)
-        self.display_list.grid(row = 4, columnspan = 3)
 
         #configure the position of entry and menu in the program, this is how users input information into the program
         self.entry.grid(row = 1, column = 2)
-        menu_fruit.grid(row = 1, column = 0)
+        self.menu_fruit.grid(row = 1, column = 0)
         self.scroll_box.grid(row = 5, columnspan = 3)
 
         #sets the defualt dropdown text when the program first loads
@@ -96,13 +93,19 @@ class DigiMartGUI:
         print()
         for i in range(len(self.shopping_list)):
             self.scroll_box.insert(END, str(i + 1) + " " + self.shopping_list[i].name + " " + self.shopping_list[i].quantity + "\n")
+        print()
+        self.label_test.configure(text = "thanks for coming")
+        self.entry.configure(state = DISABLED)
+        self.button_confirm_quantity.configure(state = DISABLED)
+        self.button_confirm_order.configure(state = DISABLED)
+        self.menu_fruit.configure(state = DISABLED)
     
     def update_label_food(self, name):
         self.label_food.configure(text = "how many " + self.fruit.get() + "s would you like?")
         self.entry.configure(state = NORMAL)
         self.button_confirm_quantity.configure(state = NORMAL)
         self.button_confirm_order.configure(state = NORMAL)
-    
+
 #creates GUI window
 if __name__ == "__main__":
     root = Tk()
