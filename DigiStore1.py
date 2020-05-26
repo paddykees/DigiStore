@@ -45,7 +45,7 @@ class DigiMartGUI:
         self.button_confirm_order = Button(parent, text = "confirm order", command = self.confirm_order, state = DISABLED)
 
         self.entry = Entry(parent, text = "How much would you like", state = DISABLED)
-        self.check_box_seller = Checkbutton(parent, text = "seller", variable = self.seller)
+        self.check_box_seller = Checkbutton(parent, text = "seller", variable = self.seller, command = self.seller_mode, onvalue = 1, offvalue = 0)
 
         self.menu_fruit = OptionMenu(parent, self.fruit, *self.item_list, command = self.update_label_food)
 
@@ -70,7 +70,7 @@ class DigiMartGUI:
     #method that defines what the button does when pressed
     def confirm_quantity(self):
         try:
-            if self.seller.get() == 0:
+            if self.check_box_seller.get() == 0:
                 #ensures that they have chosen an option
                 if self.fruit.get() != "please select an option":
                     #defines quantity as the interger typed into the the entry widget when the button is pressed
@@ -89,7 +89,7 @@ class DigiMartGUI:
                 else:
                     self.label_test.configure(text = "please select an option from the drop down menu to the left")
             else:
-                print("check button works")
+                print("enter new food item name into entry widget")
         except:
             self.label_test.configure(text = "please enter a valid interger")
         
@@ -109,6 +109,17 @@ class DigiMartGUI:
         self.entry.configure(state = NORMAL)
         self.button_confirm_quantity.configure(state = NORMAL)
         self.button_confirm_order.configure(state = NORMAL)
+
+    def seller_mode(self):
+        self.label_food.configure(text = "enter new food item name into entry widget")
+
+        self.button_confirm_quantity.configure(state = DISABLED)
+        self.button_confirm_order.configure(state = DISABLED)
+        self.menu_fruit.configure(state = DISABLED)
+        self.entry.configure(state = NORMAL)
+
+        print("its alive")
+
 
 #creates GUI window
 if __name__ == "__main__":
