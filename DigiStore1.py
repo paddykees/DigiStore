@@ -1,5 +1,6 @@
 #imports tkinter class so I can make use of it feature allowing me to easily build a GUI
 from tkinter import *
+from tkinter.scrolledtext import *
 
 #Support class defines properties of the object fruit and will later be expanded to include all the diffrent properties of items in a groccer
 class GroceryItems:
@@ -24,36 +25,45 @@ class DigiMartGUI:
         self.grocery_list.append(GroceryItems("berry", 0))
 
         #dropdown menu list, cant use grocery list since item list needs only strings to work and grocery list is objects
-        item_list = []
+        self.item_list = []
 
         #Adds the name from the objects of the grocery list to the item list
         for i in  range(len(self.grocery_list)):
-            item_list.append(self.grocery_list[i].name)
+            self.item_list.append(self.grocery_list[i].name)
 
         self.shopping_list = []
+
         #labels that display on the GUI, helps the USER understand what is going on
         label_digi_mart = Label(parent, text = "Welcome to DigiMart")
         self.label_food = Label(parent, text = "please pick an option from the dropdown menu")
         self.label_test = Label(parent, text = "text")
+        self.scroll_box = ScrolledText(parent, height = 10)
 
         #Allows the USER to interact with the program by being able o input intergers and pressing a button to confirm. 
         #A label on line 18 is configured to change and display the result entered into the entry widget
         self.button_confirm_quantity = Button(parent, text = "confirm", command = self.confirm_quantity, state = DISABLED)
+        self.button_confirm_order = Button(parent, text = "confirm order", command = self.confirm_order, state = DISABLED)
+        
+
         self.entry = Entry(parent, text = "How much would you like", state = DISABLED)
         self.check_box_seller = Checkbutton(parent, text = "seller", variable = self.seller)
 
-        menu_fruit = OptionMenu(parent, self.fruit, *item_list, command = self.update_label_food)
+        menu_fruit = OptionMenu(parent, self.fruit, *self.item_list, command = self.update_label_food)
 
-        #Configures the position of the labels in the program
+        #Configures the position of the labels in the program, these text widgets used to relay what the program purpose is and what they need to do
         label_digi_mart.grid(row = 0, columnspan = 4)
         self.label_food.grid(row = 1, column = 1)
         self.label_test.grid(row = 3, column = 2)
 
-        #Configures the position of the buttons, dropdown menus and entry widgets in the program
+        #Configures the position of the buttons and checkboxes in the program, the things used to confirm selections
         self.button_confirm_quantity.grid(row = 1, column = 3)
+        self.check_box_seller.grid(row = 3, column = 0)
+        self.button_confirm_order.grid(row = 3, column = 1)
+
+        #configure the position of entry and menu in the program, this is how users input information into the program
         self.entry.grid(row = 1, column = 2)
         menu_fruit.grid(row = 1, column = 0)
-        self.check_box_seller.grid(row = 3, column =0)
+        self.scroll_box.grid(row = 5, columnspan = 3)
 
         #sets the defualt dropdown text when the program first loads
         self.fruit.set("please select an option")
@@ -74,17 +84,24 @@ class DigiMartGUI:
                 #print(self.shopping_list[0].name + self.shopping_list[0].quantity)
                 #clears entry widget after data has been stored
                 self.entry.delete(0, 'end')
+
             else:
                 self.label_test.configure(text = "please select an option from the drop down menu to the left")
         except:
             self.label_test.configure(text = "please enter a valid interger")
+        
+    def confirm_order(self):
+        print()
+        for i in range(len(self.shopping_list)):
+            print(str(i + 1) + " " + self.shopping_list[i].name + " " + self.shopping_list[i].quantity)
     
     def update_label_food(self, name):
         self.label_food.configure(text = "how many " + self.fruit.get() + "s would you like?")
         self.entry.configure(state = NORMAL)
         self.button_confirm_quantity.configure(state = NORMAL)
+        self.button_confirm_order.configure(state = NORMAL)
 
-
+    
 #creates GUI window
 if __name__ == "__main__":
     root = Tk()
